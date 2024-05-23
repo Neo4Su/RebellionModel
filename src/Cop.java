@@ -52,7 +52,6 @@ public class Cop extends Person {
         if (targetCell != null) {
             Grid.movePerson(getX(), getY(), targetCell.getX(), targetCell.getY());
             setPosition(targetCell.getX(), targetCell.getY());
-            System.out.println(getName() + " moves to " + targetCell.getX() + "," + targetCell.getY());
         } else {
             super.moveWithinVision();
         }

@@ -13,6 +13,53 @@ public class Cop extends Person {
         super(name, x, y);
     }
 
+
+    // Move to a cell with higher density of active agents
+    @Override
+    public synchronized void moveWithinVision(){
+        List<Cell> cellsInVision = Grid.getCell(getX(), getY()).getCellsInVision();
+        List<Cell> availableCells = new ArrayList<>();
+
+        Cell targetCell = null;
+        int maxActiveAgentCount = 0;
+
+        // find available cells
+        for (Cell cell : cellsInVision) {
+            if (cell.getOccupantStatus().equals("empty")
+                    || cell.getOccupantStatus().equals("agent_jailed")) {
+                availableCells.add(cell);
+            }
+        }
+
+        // find the cell with the highest density of active agents
+        for (Cell cell : availableCells) {
+            int activeAgentCount = 0;
+            List<Cell> neighboringCells = cell.getCellsInVision();
+            for (Cell neighbor : neighboringCells) {
+                if (neighbor.getOccupantStatus().equals("agent_active")) {
+                    activeAgentCount++;
+                }
+            }
+
+            // update target cell
+            if (activeAgentCount > maxActiveAgentCount) {
+                maxActiveAgentCount = activeAgentCount;
+                targetCell = cell;
+            }
+        }
+
+        // move to the target cell, if it does not exist, move randomly
+        if (targetCell != null) {
+            Grid.movePerson(getX(), getY(), targetCell.getX(), targetCell.getY());
+            setPosition(targetCell.getX(), targetCell.getY());
+            System.out.println(getName() + " moves to " + targetCell.getX() + "," + targetCell.getY());
+        } else {
+            super.moveWithinVision();
+        }
+    }
+
+
+
     public void checkAndArrest() {
         List<Cell> cellsInVision = Grid.getCell(getX(), getY()).getCellsInVision();
         int x = getX(), y = getY();
@@ -45,7 +92,6 @@ public class Cop extends Person {
             setPosition(target.getX(), target.getY());
 
         }
-
     }
 
     public void arrest(Agent target) {

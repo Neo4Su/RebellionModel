@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-// Initialize and run the simulation
+// Initialize GUI and run the simulation
 public class Rebellion {
     public static void main(String[] args) {
         Grid.initializeGrid();
         Grid.setupCellLists();
         ArrayList<Person> personList = Grid.getPersonList();
         RebelMonitor monitor = new RebelMonitor(personList);
-
 
         // Create a frame
         JFrame frame = new JFrame("Rebellion Simulation Group 5");
@@ -22,6 +21,7 @@ public class Rebellion {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
+        // Run update rules every 100ms
         Timer timer = new Timer(100, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

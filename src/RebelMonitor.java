@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-// execute update rules each turn
+// the monitor that updates the state of the simulation
 public class RebelMonitor {
     private ArrayList<Person> personList;
     private DataManager dataManager = new DataManager();
     private int timeStep = 0;
 
+    // Execute update rules on every person each turn
     public void update() {
         // record agents data
         int quietAgentsCount = 0;
@@ -62,10 +63,12 @@ public class RebelMonitor {
 
     }
 
+    // constructor, set person list
     public RebelMonitor(ArrayList<Person> personList) {
         this.personList = personList;
     }
 
+    // getter
     public ArrayList<Person> getPersonList() {
         return personList;
     }

@@ -2,16 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 
 
-//GUI
+// GUI
 public class MapUI extends JPanel {
     private static final int GRID_SIZE = 20;
     private RebelMonitor monitor;
 
     public MapUI(RebelMonitor monitor) {
         this.monitor = monitor;
-        this.setPreferredSize(new Dimension(Params.GRID_WIDTH * GRID_SIZE, Params.GRID_HEIGHT * GRID_SIZE));
+        this.setPreferredSize(new Dimension(Params.GRID_WIDTH * GRID_SIZE,
+                Params.GRID_HEIGHT * GRID_SIZE));
     }
 
+    // draw the grid, agents and cops
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -22,7 +24,7 @@ public class MapUI extends JPanel {
             }
         }
 
-        // draw persons
+        // draw agents and cops on the grid
         for (Person person : monitor.getPersonList()) {
             if (person instanceof Agent) {
                 Agent agent = (Agent) person;
@@ -36,7 +38,8 @@ public class MapUI extends JPanel {
             } else if (person instanceof Cop) {
                 g.setColor(Color.BLUE);
             }
-            g.fillOval(person.getX() * GRID_SIZE, person.getY() * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+            g.fillOval(person.getX() * GRID_SIZE,
+                    person.getY() * GRID_SIZE, GRID_SIZE, GRID_SIZE);
         }
     }
 }

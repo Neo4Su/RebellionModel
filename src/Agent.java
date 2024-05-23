@@ -143,8 +143,6 @@ public class Agent extends Person {
         }
     }
 
-
-
     // getters
     public boolean isRebellious() {
         return rebellious;

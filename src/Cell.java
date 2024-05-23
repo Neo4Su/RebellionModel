@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 杜雨桐 on 2024/5/19 17:57
- */
+
 // A cell in the grid where agents and cops can be placed
 public class Cell {
     private int x, y;

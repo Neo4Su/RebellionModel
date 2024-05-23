@@ -4,9 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by 杜雨桐 on 2024/5/19 18:00
- */
+
 // Initialize and run the simulation
 public class Rebellion {
     public static void main(String[] args) {

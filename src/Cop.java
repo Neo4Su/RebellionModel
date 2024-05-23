@@ -57,8 +57,6 @@ public class Cop extends Person {
         }
     }
 
-
-
     public void checkAndArrest() {
         List<Cell> cellsInVision = Grid.getCell(getX(), getY()).getCellsInVision();
         int x = getX(), y = getY();

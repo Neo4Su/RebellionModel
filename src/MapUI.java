@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by 杜雨桐 on 2024/5/19 18:06
- */
+
 //GUI
 public class MapUI extends JPanel {
     private static final int GRID_SIZE = 20;

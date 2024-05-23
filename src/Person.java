@@ -2,9 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by 杜雨桐 on 2024/5/19 17:42
- */
 
 // Parent class for agents and cops
 public class Person {

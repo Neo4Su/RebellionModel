@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 /**
- * Cops
+ * Cops(With Extension)
  * Extension: Instead of moving randomly each turn,
  * cops will move to a cell with higher density of active agents
 */

@@ -1,6 +1,4 @@
-/**
- * Created by 杜雨桐 on 2024/5/19 18:05
- */
+// Parameters for the simulation
 public class Params {
     public static final int GRID_WIDTH = 40;
     public static final int GRID_HEIGHT = 40;

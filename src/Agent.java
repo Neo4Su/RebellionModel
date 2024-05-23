@@ -5,9 +5,7 @@ import java.util.Random;
 import static java.lang.Math.exp;
 import static java.lang.Math.floor;
 
-/**
- * Created by 杜雨桐 on 2024/5/19 17:48
- */
+
 // Agents
 public class Agent extends Person {
     private boolean rebellious;

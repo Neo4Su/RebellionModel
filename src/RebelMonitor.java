@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- * Created by 杜雨桐 on 2024/5/19 17:58
- */
+
 // execute update rules each turn
 public class RebelMonitor {
     private ArrayList<Person> personList;

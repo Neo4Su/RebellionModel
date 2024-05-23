@@ -5,8 +5,7 @@ import java.util.Random;
 import static java.lang.Math.exp;
 import static java.lang.Math.floor;
 
-
-// Agents
+// Agents of the simulation
 public class Agent extends Person {
     private boolean rebellious;
     private boolean arrested;
@@ -19,7 +18,7 @@ public class Agent extends Person {
 
     private double netRisk;
 
-
+    //initialize and calculate the parameters
     public Agent(String name, int x, int y) {
         super(name, x, y);
         rebellious = false;
@@ -50,9 +49,10 @@ public class Agent extends Person {
             activeAgentCount = 1;
         }
 
-        //double arrestProbability = (activeAgentCount > copCount) ? 0 : 0.99; //netlogo's implementation
+        //netlogo's implementation
+        //double arrestProbability = (activeAgentCount > copCount) ? 0 : 0.99;
 
-        // epstein model
+        // epstein model's original implementation
         double arrestProbability = 1 - exp(-2.3 * floor((copCount) / activeAgentCount));
 
         netRisk = arrestProbability * riskAversion;
@@ -60,11 +60,7 @@ public class Agent extends Person {
         return grievance - netRisk > Params.THRESHOLD;
     }
 
-
-    public boolean isRebellious() {
-        return rebellious;
-    }
-
+    // make an agent rebel
     public void setRebellious(boolean rebellious) {
         this.rebellious = rebellious;
 
@@ -78,10 +74,7 @@ public class Agent extends Person {
         }
     }
 
-    public boolean isArrested() {
-        return arrested;
-    }
-
+    // to arrest an active agent
     public void setArrested(boolean arrested) {
         this.arrested = arrested;
 
@@ -97,7 +90,7 @@ public class Agent extends Person {
         }
     }
 
-
+    // decrease jail time
     public void decreaseJailTime() {
         jailTime--;
         if (jailTime <= 0) {
@@ -114,7 +107,7 @@ public class Agent extends Person {
                 Grid.getCell(getX(), getY()).setOccupant(this);
             }
 
-/*            // method 2: release the agent if there is an empty cell within vision
+            /* method 2: release the agent if there is an empty cell within vision
 
             if (currentCell.getOccupantStatus().equals("agent_jailed")
                     || currentCell.getOccupantStatus().equals("empty")) {
@@ -148,12 +141,17 @@ public class Agent extends Person {
             }*/
 
         }
-
     }
 
-    @Override
-    public String toString() {
-        return super.toString() + "[Rebellious: " + rebellious + "]";
+
+
+    // getters
+    public boolean isRebellious() {
+        return rebellious;
+    }
+
+    public boolean isArrested() {
+        return arrested;
     }
 
 }

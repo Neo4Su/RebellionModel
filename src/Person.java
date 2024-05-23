@@ -13,34 +13,12 @@ public class Person {
         this.x = x;
         this.y = y;
     }
-    // no need for setter functions, because name, x, y will change automatically
 
-    public String getName() {
-        return name+"("+x+","+y+")";
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public String toString() {
-        return name + "[" + x + "," + y + "]";
-    }
-
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
+    // Move to a random cell in vision
     public synchronized void moveWithinVision() {
         Cell c=Grid.getCell(x,y);
         List<Cell> cellsInVision = Grid.getCell(x,y).getCellsInVision();
         List<Cell> availableCells = new ArrayList<>();
-
 
         // find available cells TODO:jailed as available?
         for (Cell cell : cellsInVision) {
@@ -57,5 +35,23 @@ public class Person {
             Grid.movePerson(x, y, newCell.getX(), newCell.getY());
             setPosition(newCell.getX(), newCell.getY());
         }
+    }
+
+    // getters and setters
+    public String getName() {
+        return name+"("+x+","+y+")";
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }

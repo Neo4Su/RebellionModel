@@ -4,15 +4,16 @@ import java.util.Random;
 
 
 /**
- * Cops
- * Extension: Instead of moving randomly each turn
- *, cops will move to a cell with higher density of active agents
-*/
+ * Cops (Without extension)
+ * Extension(see in another folder): Instead of moving randomly each turn,
+ * cops will move to a cell with higher density of active agents
+ */
 public class Cop extends Person {
     public Cop(String name, int x, int y) {
         super(name, x, y);
     }
 
+    // Check if there are active agents in vision and arrest one
     public void checkAndArrest() {
         List<Cell> cellsInVision = Grid.getCell(getX(), getY()).getCellsInVision();
         int x = getX(), y = getY();
@@ -48,14 +49,13 @@ public class Cop extends Person {
 
     }
 
+    // Arrest an agent
     public void arrest(Agent target) {
-        if (!target.isRebellious()) System.err.println("Error: Trying to arrest a non-rebellious agent!");
-
+        if (!target.isRebellious())
+            System.err.println("Error: Trying to arrest a non-rebellious agent!");
 
         target.setArrested(true);
-
-
-        System.out.println(target.getName() + " " + target.getX() + "," + target.getY() + " is arrested!");
-
+        System.out.println(target.getName() + " " +
+                target.getX() + "," + target.getY() + " is arrested!");
     }
 }

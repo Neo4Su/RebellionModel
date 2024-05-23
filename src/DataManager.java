@@ -7,6 +7,7 @@ import java.util.List;
 public class DataManager {
     private FileWriter csvWriter;
 
+    // Initialize the CSV file
     public DataManager() {
         try {
             csvWriter = new FileWriter("data.csv");
@@ -32,6 +33,7 @@ public class DataManager {
         }
     }
 
+    // Write data to the CSV file
     public void recordData(int timeStep, int quietAgents, int activeAgents, int jailedAgents) {
         try {
             String[] row = {String.valueOf(timeStep), String.valueOf(quietAgents),

@@ -5,6 +5,7 @@ import java.util.List;
 // A cell in the grid where agents and cops can be placed
 public class Cell {
     private int x, y;
+
     // status: empty, agent_quiet, agent_active, agent_jailed, cop
     private String occupantStatus;
 
@@ -41,7 +42,7 @@ public class Cell {
         }
     }
 
-
+    // set the occupant and status of the cell
     public void setOccupant(Person person) {
         this.occupant = person;
         if (person == null) {
@@ -59,6 +60,7 @@ public class Cell {
         }
     }
 
+    // getters and setters
     public Person getOccupant() {
         return occupant;
     }

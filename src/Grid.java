@@ -5,6 +5,8 @@ public class Grid {
     public static Cell[][] cells;
     private static ArrayList<Person> personList = new ArrayList<>();
 
+
+    // initialize the grid with cells
     public static void initializeGrid() {
         cells = new Cell[Params.GRID_WIDTH][Params.GRID_HEIGHT];
         for (int i = 0; i < Params.GRID_WIDTH; i++) {
@@ -23,6 +25,7 @@ public class Grid {
                 " on a " + Params.GRID_WIDTH + "x" + Params.GRID_HEIGHT + " grid.");
     }
 
+    // set up the vision of each cell
     public static void setupCellLists() {
         for (int i = 0; i < Params.GRID_WIDTH; i++) {
             for (int j = 0; j < Params.GRID_HEIGHT; j++) {
@@ -30,7 +33,6 @@ public class Grid {
             }
         }
     }
-
 
     //fill the grid with agents and cops
     private static void fillGrid(int agentsNum, int CopsNum) {
@@ -68,12 +70,14 @@ public class Grid {
 
     }
 
+    // move a person from one cell to another
     public static void movePerson(int x, int y, int newX, int newY) {
         cells[newX][newY].setOccupant(cells[x][y].getOccupant());
         cells[x][y].setOccupant(null);
 
     }
 
+    // getters and setters
     public static ArrayList<Person> getPersonList() {
         return personList;
     }
@@ -84,9 +88,5 @@ public class Grid {
 
     public static void setCell(int x, int y, Person occupant) {
         cells[x][y].setOccupant(occupant);
-    }
-
-    public static Cell[][] getAllCells() {
-        return cells;
     }
 }

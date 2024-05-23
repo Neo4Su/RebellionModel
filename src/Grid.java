@@ -72,7 +72,6 @@ public class Grid {
         cells[newX][newY].setOccupant(cells[x][y].getOccupant());
         cells[x][y].setOccupant(null);
 
-
     }
 
     public static ArrayList<Person> getPersonList() {
@@ -85,5 +84,9 @@ public class Grid {
 
     public static void setCell(int x, int y, Person occupant) {
         cells[x][y].setOccupant(occupant);
+    }
+
+    public static Cell[][] getAllCells() {
+        return cells;
     }
 }

@@ -1,5 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static java.lang.Math.exp;
+import static java.lang.Math.floor;
 
 /**
  * Created by 杜雨桐 on 2024/5/19 17:48
@@ -43,7 +47,16 @@ public class Agent extends Person {
             }
         }
 
-        double arrestProbability = (activeAgentCount > copCount) ? 0 : 0.99;
+        // no zero division
+        if (activeAgentCount == 0) {
+            activeAgentCount = 1;
+        }
+
+        //double arrestProbability = (activeAgentCount > copCount) ? 0 : 0.99; //netlogo's implementation
+
+        // epstein model
+        double arrestProbability = 1 - exp(-2.3 * floor((copCount) / activeAgentCount));
+
         netRisk = arrestProbability * riskAversion;
 
         return grievance - netRisk > Params.THRESHOLD;
@@ -86,18 +99,14 @@ public class Agent extends Person {
         }
     }
 
-    public int getJailTime() {
-        return jailTime;
-    }
 
     public void decreaseJailTime() {
-
         jailTime--;
         if (jailTime <= 0) {
 
-            // release the agent if the current cell is not occupied
-            // TODO: find and move to a empty cell within vision?
             Cell currentCell = Grid.getCell(getX(), getY());
+
+            // method 1: release the agent if the current cell is not occupied
             if (currentCell.getOccupantStatus().equals("agent_jailed")
                     || currentCell.getOccupantStatus().equals("empty")) {
 
@@ -106,6 +115,40 @@ public class Agent extends Person {
                 System.out.println(getName() + " is released from jail!");
                 Grid.getCell(getX(), getY()).setOccupant(this);
             }
+
+/*            // method 2: release the agent if there is an empty cell within vision
+
+            if (currentCell.getOccupantStatus().equals("agent_jailed")
+                    || currentCell.getOccupantStatus().equals("empty")) {
+
+                arrested = false;
+                rebellious = false;
+                System.out.println(getName() + " is released from jail!");
+                Grid.getCell(getX(), getY()).setOccupant(this);
+                return;
+            }
+
+            List<Cell> cellsInVision = currentCell.getCellsInVision();
+            List<Cell> emptyCells = new ArrayList<>();
+            for (Cell cell : cellsInVision) {
+                if (cell.getOccupantStatus().equals("empty")
+                        || cell.getOccupantStatus().equals("agent_jailed")) {
+                    emptyCells.add(cell);
+                }
+            }
+
+            Cell[][] cells = Grid.getAllCells();
+            if (!emptyCells.isEmpty()) {
+                Cell newCell = emptyCells.get(new Random().nextInt(emptyCells.size()));
+                arrested = false;
+                rebellious = false;
+                System.out.println(getName() + " is released from jail!");
+
+
+                newCell.setOccupant(this);
+                setPosition(newCell.getX(), newCell.getY());
+            }*/
+
         }
 
     }

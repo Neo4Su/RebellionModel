@@ -2,8 +2,8 @@
  * Created by 杜雨桐 on 2024/5/19 18:05
  */
 public class Params {
-    public static final int GRID_WIDTH = 500;
-    public static final int GRID_HEIGHT = 500;
+    public static final int GRID_WIDTH = 40;
+    public static final int GRID_HEIGHT = 40;
 
     public static final double COP_DENSITY = 0.04;
     public static final double AGENT_DENSITY = 0.7;

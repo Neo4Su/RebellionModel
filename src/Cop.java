@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Cops (Without extension)
- * Extension(see in another folder): Instead of moving randomly each turn,
+ * Extension (see in another folder): Instead of moving randomly each turn,
  * cops will move to a cell with higher density of active agents
  */
 public class Cop extends Person {

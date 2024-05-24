@@ -23,7 +23,8 @@ public class Cop extends Person {
 
                 if (!(cell.getOccupant() instanceof Agent)) {
 
-                    System.err.println("Error: Occupant is not an agent! " + cell.getX() + "," + cell.getY());
+                    System.err.println("Error: Occupant is not an agent! " +
+                            cell.getX() + "," + cell.getY());
                 }
 
                 activeAgentsInVision.add((Agent) cell.getOccupant());
